@@ -9,6 +9,7 @@ services:
   #webコンテナ
   web:
     build: .
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - db
     environment:
@@ -17,5 +18,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/docker-rails-practice
+    stdin_open: true
+    tty: true
 volumes:
   db-data:
