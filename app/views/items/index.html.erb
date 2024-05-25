@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<p style="text-align: center;" id="notice"><%= notice %></p>
+<div style="text-align: center;">
+  <h3>商品一覧</h3>
+</div>
+<div style="text-align: center;">
+  <%= form_with url: update_coupon_status_items_path, html: { style: "display: inline-block; text-align: center;" } do |f| %>
+    <table style="margin: auto; display: block; text-align: center;">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>クーポンステータス</th>
+        </tr>
+      </thead>
 
-<h3>商品一覧</h3>
-
-<%= form_with url: update_coupon_status_items_path do |f| %>
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>クーポンステータス</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= check_box_tag 'item_ids[]', item.id, item.coupon_status %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= f.submit '登録' %>
-<% end %>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td style="text-align: center;"><%= check_box_tag 'item_ids[]', item.id, item.coupon_status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin: auto; text-align: center;">
+      <%= f.submit '登録' %>
+    </div>
+  <% end %>
+</div>
