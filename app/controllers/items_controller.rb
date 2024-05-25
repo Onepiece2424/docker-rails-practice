@@ -6,6 +6,12 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
+  def update_coupon_status
+    Item.update_all(coupon_status: false)
+    params[:item_ids].present? && Item.where(id: params[:item_ids]).update_all(coupon_status: true)
+    redirect_to items_path, notice: 'クーポンステータスが更新されました。'
+  end
+
   # GET /items/1 or /items/1.json
   def show
   end

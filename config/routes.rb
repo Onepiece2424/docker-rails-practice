@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  resources :items
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :items do
+    post "update_coupon_status", on: :collection
+  end
 end
