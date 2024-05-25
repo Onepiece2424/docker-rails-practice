@@ -16,7 +16,7 @@
         <% @items.each do |item| %>
           <tr>
             <td><%= item.name %></td>
-            <td style="text-align: center;"><%= check_box_tag 'item_ids[]', item.id, item.coupon_status %></td>
+            <td><%= check_box_tag 'item_ids[]', item.id, item.coupon_status, class: "center-checkbox" %></td>
           </tr>
         <% end %>
       </tbody>
