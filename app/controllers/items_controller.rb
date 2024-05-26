@@ -7,8 +7,13 @@ class ItemsController < ApplicationController
   end
 
   def update_coupon_status
-    Item.update_all(coupon_status: false)
-    params[:item_ids].present? && Item.where(id: params[:item_ids]).update_all(coupon_status: true)
+    if params[:item].present?
+      params[:item].each do |item_id, item_attributes|
+        item = Item.find(item_id)
+        item.update(coupon_status: item_attributes[:coupon_status])
+      end
+    end
+
     redirect_to items_path, notice: 'クーポンステータスが更新されました。'
   end
 
